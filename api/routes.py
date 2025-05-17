@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
 
-@router.get("/")
+@router.get("/register")
 async def read_root(request: Request):
     cursor = recipes_collection.find()
     recipes = []
