@@ -2,9 +2,10 @@ from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 from fastapi.staticfiles import StaticFiles
 from api.routes import router
+from api import auth
 from db.session import init
 from fastapi.middleware.cors import CORSMiddleware
-from api import routes
+from api import routes, recepie
 app = FastAPI(
     default_response_class=ORJSONResponse,
     docs_url='/api/openapi',
@@ -24,13 +25,12 @@ app.add_middleware(
 
 # Затем подключаем роутеры
 
-app.include_router(routes.router, prefix='', tags=["auth"]) # Ауентификация
+app.include_router(routes.router, prefix='', tags=["main"]) # главная страница
+app.include_router(auth.router,prefix='', tags=['auth'] )
 
-# 
 
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-app.include_router(router)
 
 init()
 

@@ -19,10 +19,8 @@ class Settings(BaseSettings):
     # MongoDB settings
     MONGODB_URL: str = "localhost"
     MONGODB_PORT: int = 27017
-    MONGODB_DB_NAME: str = "laminate_store"
-    MONGODB_COLLECTION_PRODUCTS: str = "products"
-    MONGODB_COLLECTION_СARTS: str = "carts"
-    
+    MONGODB_DB_NAME: str = "recipe_site"
+    MONGODB_COLLECTION_RECEPIES: str = "recipes"
 
 
     class Config:

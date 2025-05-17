@@ -1,6 +1,12 @@
-from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo import MongoClient
+from core.settings import settings
 
-MONGO_URL = "mongodb://localhost:27017"
-client = AsyncIOMotorClient(MONGO_URL)
-db = client.recipes_db
-recipes_collection = db.recipes
+server = MongoClient(settings.MONGODB_URL, settings.MONGODB_PORT)
+
+recipe_site = server[settings.MONGODB_DB_NAME]
+
+recipes_collection = recipe_site[settings.MONGODB_COLLECTION_RECEPIES]
+
+
+data = recipes_collection.find({})
+
